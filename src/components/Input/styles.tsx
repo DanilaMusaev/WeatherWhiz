@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import ScaleTabs from '../ScaleTabs';
 
 interface InputContainerProps {
     $width?: `${string}px` | `${string}vw` | `${string}%`;
@@ -31,9 +32,24 @@ interface InputProps {
 
 const InputContainer = styled.div<InputContainerProps>`
     position: relative;
+    padding: 5px 10px 5px 0px;
     width: ${({ $width }) => ($width ? $width : 'auto')};
+    display: flex;
+    column-gap: 30px;
+    align-items: center;
+    overflow: hidden;
 
     &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: ${({ theme }) => theme.inputBg};
+        border-radius: ${({ $borderRadius }) =>
+            $borderRadius ? $borderRadius : '0'};
+        z-index: -1;
+    }
+
+    &::after {
         content: '';
         position: absolute;
         inset: 0;
@@ -48,18 +64,19 @@ const InputContainer = styled.div<InputContainerProps>`
         -webkit-mask-composite: xor;
         mask-composite: exclude;
         pointer-events: none;
+        z-index: -1;
     }
 `;
 
 const StyledInput = styled.input.attrs({ type: 'text' })<StyledInputProps>`
     width: 100%;
     padding: ${({ $padding }) => ($padding ? $padding : '0')};
-    font-size: 20px;
-    background: ${({ theme }) => theme.inputBg};
+    background: transparent;
     border: none;
-    border-radius: 8px;
-    color: ${({ theme }) => theme.textColor};
     outline: none;
+
+    font-size: 20px;
+    color: ${({ theme }) => theme.textColor};
 
     &::placeholder {
         color: ${({ theme }) => theme.placeholderColor};
@@ -90,6 +107,7 @@ export const InputComponent: React.FC<InputProps> = ({
                 value={value}
                 onChange={onChange}
             />
+            <ScaleTabs />
         </InputContainer>
     );
 };

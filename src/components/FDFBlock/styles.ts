@@ -14,11 +14,12 @@ interface GradFDFBlockProps {
 export const GradFDFBlock = styled.div<GradFDFBlockProps>`
     position: relative;
     width: ${({ $width }) => ($width ? $width : '100%')};
-    max-width: ${({$maxWidth}) => $maxWidth ? $maxWidth : 'unset'};
+    max-width: ${({ $maxWidth }) => ($maxWidth ? $maxWidth : 'unset')};
     padding: ${({ $padding }) => ($padding ? $padding : '0')};
     border-radius: ${({ $borderRadius }) =>
         $borderRadius ? $borderRadius : '0'};
     overflow: hidden;
+    box-shadow: 0 0 10px 4px rgba(0, 0, 0, 0.1);
     z-index: 1;
 
     /* Градиентный фон */
@@ -37,8 +38,9 @@ export const GradFDFBlock = styled.div<GradFDFBlockProps>`
         left: 0;
         right: 0;
         bottom: 0;
-        border-radius: ${({$borderRadius}) => $borderRadius ? $borderRadius : 0};
-        padding: ${({$borderWidth}) => $borderWidth ? $borderWidth : '1px'};
+        border-radius: ${({ $borderRadius }) =>
+            $borderRadius ? $borderRadius : 0};
+        padding: ${({ $borderWidth }) => ($borderWidth ? $borderWidth : '1px')};
         background: ${({ theme }) => theme.FDFBorder};
         -webkit-mask: linear-gradient(#fff 0 0) content-box,
             linear-gradient(#fff 0 0);

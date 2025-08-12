@@ -19,6 +19,7 @@ export const GradMainBlock = styled.div<GradMainBlockProps>`
     border-radius: ${({ $borderRadius }) =>
         $borderRadius ? $borderRadius : '0'};
     overflow: hidden;
+    box-shadow: 0 0 10px 4px rgba(0, 0, 0, 0.1);
     z-index: 1;
 
     /* Градиентный фон */
@@ -27,7 +28,7 @@ export const GradMainBlock = styled.div<GradMainBlockProps>`
         position: absolute;
         inset: 0;
         background: ${({ theme }) => theme.mainBlockBg};
-        z-index: -1;
+        z-index: -3;
     }
     /* Градиентная граница */
     &::after {
@@ -46,7 +47,7 @@ export const GradMainBlock = styled.div<GradMainBlockProps>`
         mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
         -webkit-mask-composite: xor;
         mask-composite: exclude;
-        z-index: -1;
+        z-index: -3;
         pointer-events: none;
     }
 `;

@@ -13,7 +13,8 @@ export interface ThemeType {
     InputBorder: string;
 
     scaleTabBg: string;
-    scaleTabBorder: string;
+    scaleTabBorderLeft: string;
+    scaleTabBorderRight: string;
 
     FDFBgColor: string;
     FDFBorder: string;
@@ -40,7 +41,9 @@ export const sunnyTheme: ThemeType = {
         'linear-gradient(135deg, #0040bc 0%, #aa12ec 44.6%, #a7005c 69.93%)',
 
     scaleTabBg: '#1F1A35',
-    scaleTabBorder: 'linear-gradient(133deg, #504c80 0%, #1f1a35 39.9%)',
+    scaleTabBorderLeft: 'linear-gradient(133deg, #504c80 0%, #1f1a35 39.9%)',
+    scaleTabBorderRight:
+        'linear-gradient(225deg, #504c80 0%, #211a37 40.15%)',
 
     FDFBgColor: 'linear-gradient(3deg, #08060f 0%, #130928 100%)',
     FDFBorder: 'linear-gradient(4deg, #0e1332 0%, #310f79 100%)',
@@ -64,8 +67,10 @@ export const cloudyTheme: ThemeType = {
     InputBorder: '#465155',
 
     scaleTabBg: '#2F373C',
-    scaleTabBorder:
+    scaleTabBorderLeft:
         'linear-gradient(133deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0) 39.9%)',
+    scaleTabBorderRight:
+        'linear-gradient(225deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0) 39.9%)',
 
     FDFBgColor: 'linear-gradient(180deg, #3b4348 0%, #2a3235 100%)',
     FDFBorder: '#505C62',
@@ -89,8 +94,10 @@ export const rainyTheme: ThemeType = {
     InputBorder: 'linear-gradient(90deg, #509ac9 0%, #16415f 100%)',
 
     scaleTabBg: '#142530',
-    scaleTabBorder:
+    scaleTabBorderLeft:
         'linear-gradient(133deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0) 39.9%)',
+    scaleTabBorderRight:
+        'linear-gradient(225deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0) 39.9%)',
 
     FDFBgColor: 'linear-gradient(174deg, #152b38 0%, #111f28 100%)',
     FDFBorder: '#16415F',
@@ -114,8 +121,10 @@ export const thunderTheme: ThemeType = {
     InputBorder: '#3F5662',
 
     scaleTabBg: '#273B45',
-    scaleTabBorder:
+    scaleTabBorderLeft:
         'linear-gradient(133deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0) 39.9%)',
+    scaleTabBorderRight:
+        'linear-gradient(225deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0) 39.9%)',
 
     FDFBgColor: 'linear-gradient(191deg, #21313a 0%, #2c3f49 100%)',
     FDFBorder: '#3F5662',
