@@ -51,3 +51,18 @@ export const GradFDFBlock = styled.div<GradFDFBlockProps>`
         pointer-events: none;
     }
 `;
+
+export const FDFTitle = styled.h3`
+    font-weight: 400;
+    font-size: 26px;
+    color: ${({theme}) => theme.secAccentColor};
+`;
+
+export const FDFCardContainer = styled.div`
+    margin-top: 35px;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 25px;
+`
