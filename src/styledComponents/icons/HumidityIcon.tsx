@@ -7,6 +7,7 @@ interface HumidityIconProps {
 
 const StyledHumidityIcon = styled(IconWrapper).attrs({ viewBox: '0 0 25 25' })`
     path {
+        fill: transparent;
         stroke: ${({ theme }) => theme.textColor};
         stroke-width: 2;
         stroke-linecap: round;

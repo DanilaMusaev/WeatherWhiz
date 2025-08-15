@@ -1,3 +1,4 @@
+import type { Weather } from '../store/types';
 import {
     cloudyTheme,
     rainyTheme,
@@ -6,7 +7,11 @@ import {
     type ThemeType,
 } from '../styles/theme';
 
-export const getThemeByWeather = (weatherCondition: string): ThemeType => {
+export const getThemeByWeather = (weatherCondition: Weather | undefined): ThemeType => {
+
+    if (!weatherCondition) {
+        return sunnyTheme;
+    }
     const lowerCaseCondition = weatherCondition.toLowerCase();
 
     if (lowerCaseCondition.includes('rain')) {

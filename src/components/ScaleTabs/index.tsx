@@ -1,27 +1,28 @@
-import { useState } from 'react';
 import { StyledScaleTab } from '../../styledComponents/ScaleTab';
 import styled from 'styled-components';
+import { useWeatherStore } from '../../store/useWeatherStore';
 
 const ScaleTabsContainer = styled.div`
     display: flex;
     align-items: center;
     column-gap: 7px;
-`
+`;
 
 const ScaleTabs = () => {
-    const [scale, setScale] = useState<'celsius' | 'fahrenheit'>('celsius');
+    const { unit, setUnit } = useWeatherStore();
+
     return (
         <ScaleTabsContainer>
             <StyledScaleTab
-                $isActive={scale === 'celsius'}
+                $isActive={unit === 'metric'}
                 $position="left"
-                onClick={() => setScale('celsius')}
+                onClick={() => setUnit('metric')}
             >
                 &#176;C
             </StyledScaleTab>
             <StyledScaleTab
-                $isActive={scale === 'fahrenheit'}
-                onClick={() => setScale('fahrenheit')}
+                $isActive={unit === 'imperial'}
+                onClick={() => setUnit('imperial')}
             >
                 &#176;F
             </StyledScaleTab>
