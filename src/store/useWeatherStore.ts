@@ -14,11 +14,8 @@ export const useWeatherStore = create<WeatherStore>()(
 
             setWeatherData: (data) => {
                 set({
-                    current: data.current,
-                    forecast: data.forecast,
-                    city: data.city,
-                    isLoading: false,
-                    error: null,
+                    current: data.current ?? null,
+                    forecast: data.forecast ?? null,
                 });
             },
 
@@ -33,6 +30,10 @@ export const useWeatherStore = create<WeatherStore>()(
             setError: (error) => {
                 set({ error, isLoading: false });
             },
+
+            setLoading: (loading) => {
+                set({isLoading: loading})
+            }
         }),
         {
             name: 'weather-storage',

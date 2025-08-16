@@ -30,14 +30,14 @@ interface WeatherState {
 }
 
 interface WeatherActions {
-    setWeatherData: (data: {
+    setWeatherData: (data: Partial<{
         current: CurrentWeather;
         forecast: ForecastDay[];
-        city: CityName;
-    }) => void;
+    }>) => void;
     setUnit: (unit: UnitType) => void;
     setCity: (city: CityName) => void;
     setError: (error: string) => void;
+    setLoading: (loading: boolean) => void;
 }
 
 export type WeatherStore = WeatherState & WeatherActions;

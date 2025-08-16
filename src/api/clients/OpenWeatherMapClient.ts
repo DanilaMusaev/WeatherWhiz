@@ -4,11 +4,19 @@ import { unixTimestampHHMM } from '../../utils/unixTimestampConv';
 import type { ApiClient, WeatherQueryParams } from '../api-client';
 import type { CurrentWeatherResponse, ForecastResponse } from '../types';
 
-class MockApiClient implements ApiClient {
+class OpenWeatherMapClient implements ApiClient {
+    private API_KEY: any;
+
+    constructor() {
+        this.API_KEY = import.meta.env.VITE_WEATHER_API_KEY;
+    }
+
     public async fetchWeather(
         params: WeatherQueryParams
     ): Promise<CurrentWeather> {
-        const response = await fetch(`/mockData/currWeather.json`);
+        const response = await fetch(
+            `https://api.openweathermap.org/data/2.5/weather?lat=${params.lat}&lon=${params.lon}&appid=${this.API_KEY}&units=${params.unit}`
+        ); // ЫЫЫ, в devtools будет виден API ключ, но создавать прокси сервер лень, так что оставим так
         const data = (await response.json()) as CurrentWeatherResponse;
         // Преобразование полученных данных к необходимым
         const mappedData: CurrentWeather = {
@@ -26,12 +34,12 @@ class MockApiClient implements ApiClient {
     public async fetchForecast(
         params: WeatherQueryParams
     ): Promise<ForecastDay[]> {
-        const response = await fetch(`/mockData/hourlyForecast.json`);
+        const response = await fetch(
+            `https://api.openweathermap.org/data/2.5/forecast?lat=${params.lat}&lon=${params.lon}&appid=${this.API_KEY}&units=${params.unit}`
+        );
         const data = (await response.json()) as ForecastResponse;
         // Преобразование полученных данных к необходимым
-        const firstFullDayIndex = data.list.findIndex((day) =>
-            day.dt_txt.endsWith('00:00:00')
-        );
+        const firstFullDayIndex = data.list.findIndex(day => day.dt_txt.endsWith('00:00:00'));
         const mappedData: ForecastDay[] = data.list
             .slice(firstFullDayIndex)
             .filter((_, index) => index % 8 === 0)
@@ -44,4 +52,4 @@ class MockApiClient implements ApiClient {
     }
 }
 
-export default new MockApiClient();
+export default new OpenWeatherMapClient();
