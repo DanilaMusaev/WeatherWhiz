@@ -31,6 +31,7 @@ interface InputProps {
 }
 
 const InputContainer = styled.div<InputContainerProps>`
+    margin-bottom: 40px;
     position: relative;
     padding: 5px 10px 5px 0px;
     width: ${({ $width }) => ($width ? $width : 'auto')};

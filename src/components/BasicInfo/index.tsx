@@ -8,16 +8,23 @@ import {
 } from './styles';
 
 const BasicInfo = () => {
-    const { unit } = useWeatherStore();
+    const unit = useWeatherStore((state) => state.unit);
+    const city = useWeatherStore((state) => state.city);
+    const temp = useWeatherStore((state) => state.current?.temp);
+    const feelsLike = useWeatherStore((state) => state.current?.feels_like);
 
     return (
         <BasicInfoContainer>
-            <BasicInfoCity>Moscow</BasicInfoCity>
+            <BasicInfoCity>{city}</BasicInfoCity>
             <BasicInfoTemperature>
-                24<span>&#176;{unit === 'metric' ? 'C' : 'F'}</span>
+                {temp}
+                <span>&#176;{unit === 'metric' ? 'C' : 'F'}</span>
             </BasicInfoTemperature>
             <BasicInfoSense>
-                Feels like <span>26&#176;{unit === 'metric' ? 'C' : 'F'}</span>
+                Feels like{' '}
+                <span>
+                    {feelsLike}&#176;{unit === 'metric' ? 'C' : 'F'}
+                </span>
             </BasicInfoSense>
             <WeatherIndicator />
         </BasicInfoContainer>

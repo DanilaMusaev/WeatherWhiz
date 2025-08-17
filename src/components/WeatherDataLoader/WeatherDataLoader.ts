@@ -5,7 +5,10 @@ import { useWeatherStore } from '../../store/useWeatherStore';
 const WeatherDataLoader = () => {
     const city = useWeatherStore((state) => state.city);
     const unit = useWeatherStore((state) => state.unit);
-    const setWeatherData = useWeatherStore((state) => state.setWeatherData);
+    const setCurrWeatherData = useWeatherStore(
+        (state) => state.setCurrWeatherData
+    );
+    const setForecastData = useWeatherStore((state) => state.setForecastData);
     const setError = useWeatherStore((state) => state.setError);
     const setLoading = useWeatherStore((state) => state.setLoading);
     const apiService = useApi();
@@ -18,7 +21,9 @@ const WeatherDataLoader = () => {
                     // setLoading(true);
                     try {
                         const data = await apiService.fetchWeather(city, unit);
-                        setWeatherData({ current: data });
+                        setTimeout(() => {
+                            setCurrWeatherData({ current: data });
+                        }, 3000)
                         return data;
                     } catch (error) {
                         setError(
@@ -39,7 +44,9 @@ const WeatherDataLoader = () => {
                     // setLoading(true)
                     try {
                         const data = await apiService.fetchForecast(city, unit);
-                        setWeatherData({ forecast: data });
+                        setTimeout(() => {
+                            setForecastData({ forecast: data });
+                        }, 3000);
                         return data;
                     } catch (error) {
                         setError(

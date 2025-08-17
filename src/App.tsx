@@ -8,6 +8,7 @@ import FDFBlock from './components/FDFBlock';
 import { getThemeByWeather } from './utils/getTheme';
 import { useWeatherStore } from './store/useWeatherStore';
 import { ApiProvider } from './providers/ApiProvider';
+import WeatherDataLoader from './components/WeatherDataLoader/WeatherDataLoader';
 
 const AppWrapper = styled.div`
     display: flex;
@@ -31,16 +32,17 @@ function App() {
     }, [condition]);
 
     return (
-        <ThemeProvider theme={currentTheme || sunnyTheme}>
-            <ApiProvider>
+        <ApiProvider>
+            <ThemeProvider theme={currentTheme || sunnyTheme}>
                 <ResetStyles />
                 <GlobalStyle />
+                <WeatherDataLoader />
                 <AppWrapper>
                     <MainBlock />
                     <FDFBlock />
                 </AppWrapper>
-            </ApiProvider>
-        </ThemeProvider>
+            </ThemeProvider>
+        </ApiProvider>
     );
 }
 

@@ -1,4 +1,4 @@
-import type { CityName } from "../data/citiesList";
+import type { CityName } from '../data/citiesList';
 
 export type Weather = 'Clear' | 'Cloudy' | 'Rainy' | 'Thunderstorm';
 
@@ -30,10 +30,8 @@ interface WeatherState {
 }
 
 interface WeatherActions {
-    setWeatherData: (data: Partial<{
-        current: CurrentWeather;
-        forecast: ForecastDay[];
-    }>) => void;
+    setCurrWeatherData: (data: { current: CurrentWeather }) => void;
+    setForecastData: (data: { forecast: ForecastDay[] }) => void;
     setUnit: (unit: UnitType) => void;
     setCity: (city: CityName) => void;
     setError: (error: string) => void;

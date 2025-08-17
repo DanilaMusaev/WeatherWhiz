@@ -7,27 +7,32 @@ import WindIcon from "../../styledComponents/icons/WindIcon";
 import { TempProperty } from "./styles";
 
 const SecondaryInfo = () => {
-    const {unit} = useWeatherStore();
+    const unit = useWeatherStore(state => state.unit);
+    const humidity = useWeatherStore((state) => state.current?.humidity);
+    const windSpeed = useWeatherStore((state) => state.current?.wind_speed);
+    const sunrise = useWeatherStore((state) => state.current?.sunrise);
+    const sunset = useWeatherStore((state) => state.current?.sunset);
+
     return (
         <Flex $align="center" $justify="space-between">
             <Flex $gap="30px">
                 <TempProperty>
                     <WindIcon size={25} />
-                    <p>Wind: 10 {unit === 'metric' ? 'm/s' : 'mi/s'}</p>
+                    <p>Wind: {windSpeed} {unit === 'metric' ? 'm/s' : 'mi/s'}</p>
                 </TempProperty>
                 <TempProperty>
                     <HumidityIcon size={25} />
-                    <p>Humidity: 35%</p>
+                    <p>Humidity: {humidity}%</p>
                 </TempProperty>
             </Flex>
             <Flex $gap="30px">
                 <TempProperty>
                     <SunriseIcon size={25}/>
-                    <p>Sunrise: 6:30</p>
+                    <p>Sunrise: {sunrise}</p>
                 </TempProperty>
                 <TempProperty>
                     <SunsetIcon size={25}/>
-                    <p>Sunset: 22:38</p>
+                    <p>Sunset: {sunset}</p>
                 </TempProperty>
             </Flex>
         </Flex>

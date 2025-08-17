@@ -45,7 +45,7 @@ class OpenWeatherMapClient implements ApiClient {
             .filter((_, index) => index % 8 === 0)
             .map((day) => ({
                 date: day.dt_txt.split(' ')[0],
-                temp: day.main.temp,
+                temp: Math.round(day.main.temp),
                 condition: getWeatherCondition(day.weather[0].main),
             }));
         return mappedData;

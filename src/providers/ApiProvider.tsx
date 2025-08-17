@@ -1,6 +1,7 @@
 import { createContext, useContext } from 'react';
 import { ApiService } from '../api/apiService';
 import MockClient from '../api/clients/MockClient';
+import OpenWeatherMapClient from '../api/clients/OpenWeatherMapClient';
 
 const apiService = new ApiService(MockClient);
 

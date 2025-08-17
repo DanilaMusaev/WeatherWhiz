@@ -29,6 +29,8 @@ export const GradMainBlock = styled.div<GradMainBlockProps>`
         inset: 0;
         background: ${({ theme }) => theme.mainBlockBg};
         z-index: -3;
+
+        transition: background 0.3s ease;
     }
     /* Градиентная граница */
     &::after {
@@ -49,5 +51,7 @@ export const GradMainBlock = styled.div<GradMainBlockProps>`
         mask-composite: exclude;
         z-index: -3;
         pointer-events: none;
+
+        transition: background 0.3s ease;
     }
 `;
