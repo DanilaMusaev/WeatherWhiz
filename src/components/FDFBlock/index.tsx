@@ -1,12 +1,14 @@
 import { useWeatherStore } from '../../store/useWeatherStore';
+import ForecastPlaceholderCard from '../../styledComponents/ForecastCardPlaceholder';
 import { getNext5Days } from '../../utils/getNext5Days';
 import DayForecastCard from '../DayForecastCard';
 import { FDFCardContainer, FDFTitle, GradFDFBlock } from './styles';
 
 const FDFBlock = () => {
     const daysForecast = useWeatherStore((state) => state.forecast);
+    const nextFiveDays = getNext5Days();
 
-    console.log('Forecast: ', daysForecast)
+    console.log('Forecast: ', daysForecast);
     return (
         <GradFDFBlock
             $width="900px"
@@ -14,20 +16,29 @@ const FDFBlock = () => {
             $borderRadius="12px"
         >
             <FDFTitle>5-Day Forecast</FDFTitle>
-            {!daysForecast ? (
-                <div>Forecast is Loading</div>
-            ) : (
-                <FDFCardContainer>
-                    {getNext5Days().map((wd, index) => (
-                        <DayForecastCard
-                            key={`${wd}_${index}`}
-                            weekday={wd}
-                            dayWeather={daysForecast[index].condition}
-                            temp={daysForecast[index].temp}
-                        />
-                    ))}
-                </FDFCardContainer>
-            )}
+            <FDFCardContainer>
+                {!daysForecast ? (
+                    <>
+                        {nextFiveDays.map((wd, index) => (
+                            <ForecastPlaceholderCard
+                                key={`${wd}_${index}-PH`}
+                                weekday={wd}
+                            />
+                        ))}
+                    </>
+                ) : (
+                    <>
+                        {nextFiveDays.map((wd, index) => (
+                            <DayForecastCard
+                                key={`${wd}_${index}`}
+                                weekday={wd}
+                                dayWeather={daysForecast[index].condition}
+                                temp={daysForecast[index].temp}
+                            />
+                        ))}
+                    </>
+                )}
+            </FDFCardContainer>
         </GradFDFBlock>
     );
 };

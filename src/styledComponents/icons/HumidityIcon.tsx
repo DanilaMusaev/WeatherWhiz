@@ -11,6 +11,8 @@ const StyledHumidityIcon = styled(IconWrapper).attrs({ viewBox: '0 0 25 25' })`
         stroke: ${({ theme }) => theme.textColor};
         stroke-width: 2;
         stroke-linecap: round;
+
+        transition: stroke 0.3s ease-out;
     }
 `;
 

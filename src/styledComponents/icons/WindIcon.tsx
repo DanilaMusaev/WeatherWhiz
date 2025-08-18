@@ -10,6 +10,8 @@ const StyledWindIcon = styled(IconWrapper).attrs({ viewBox: '0 0 25 25' })`
         fill: ${({ theme }) => theme.textColor};
         fill-rule: evenodd;
         clip-rule: evenodd;
+
+        transition: fill 0.3s ease-out;
     }
 `;
 

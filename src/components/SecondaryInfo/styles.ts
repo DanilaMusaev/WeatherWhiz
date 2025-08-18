@@ -9,5 +9,7 @@ export const TempProperty = styled.div`
         font-weight: 400;
         font-size: 22px;
         color: inherit;
+
+        transition: color 0.3s ease-out;
     }
 `;

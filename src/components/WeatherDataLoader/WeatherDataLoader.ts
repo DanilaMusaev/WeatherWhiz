@@ -13,17 +13,15 @@ const WeatherDataLoader = () => {
     const setLoading = useWeatherStore((state) => state.setLoading);
     const apiService = useApi();
 
-    const queries = useQueries({
+    useQueries({
         queries: [
             {
                 queryKey: ['weather', city, unit],
                 queryFn: async () => {
-                    // setLoading(true);
+                    setLoading(true);
                     try {
                         const data = await apiService.fetchWeather(city, unit);
-                        setTimeout(() => {
-                            setCurrWeatherData({ current: data });
-                        }, 3000)
+                        setCurrWeatherData({ current: data });
                         return data;
                     } catch (error) {
                         setError(
@@ -33,20 +31,17 @@ const WeatherDataLoader = () => {
                         );
                         throw error;
                     } finally {
-                        // setLoading(false);
+                        setLoading(false);
                     }
                 },
-                staleTime: 30 * 60 * 1000, // 30 min
+                staleTime: 5 * 60 * 1000, // 5 min
             },
             {
                 queryKey: ['forecast', city, unit],
                 queryFn: async () => {
-                    // setLoading(true)
                     try {
                         const data = await apiService.fetchForecast(city, unit);
-                        setTimeout(() => {
-                            setForecastData({ forecast: data });
-                        }, 3000);
+                        setForecastData({ forecast: data });
                         return data;
                     } catch (error) {
                         setError(
@@ -55,11 +50,9 @@ const WeatherDataLoader = () => {
                                 : `Unknown error, while fetching data`
                         );
                         throw error;
-                    } finally {
-                        // setLoading(false);
                     }
                 },
-                staleTime: 60 * 60 * 1000, // 1 hour
+                staleTime: 5 * 60 * 1000, // 5 min
             },
         ],
     });

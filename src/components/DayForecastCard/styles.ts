@@ -11,16 +11,22 @@ export const StyledDFCard = styled.div`
     justify-content: center;
     align-items: center;
     row-gap: 1px;
+
+    transition: background 0.3s ease-out;
 `;
 
 export const DayForecastWeekday = styled.p`
     font-weight: 500;
     font-size: 28px;
     color: ${({ theme }) => theme.textColor};
+
+    transition: color 0.3s ease-out;
 `;
 
 export const DayForecastTemp = styled.p`
     font-weight: 400;
     font-size: 28px;
     color: ${({ theme }) => theme.textColor};
+
+    transition: color 0.3s ease-out;
 `;

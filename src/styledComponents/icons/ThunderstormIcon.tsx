@@ -1,25 +1,68 @@
-import styled from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 import { IconWrapper } from '../icon-styles';
+
+interface StyledThunderstormIconProps {
+    $isGlow?: boolean;
+}
 
 interface ThunderstormIconProps {
     size: number;
+    isGlow?: boolean;
 }
+
+const thunderAnim = keyframes`
+    0%, 40% {
+    filter: drop-shadow(0 0 5px #fac71260);
+  }
+  /* Этап 2: Вспышки (3 удара) */
+  42% {
+    filter: drop-shadow(0 0 6px #fac71280) 
+            drop-shadow(0 0 7px #fac71280);
+  }
+  44%, 50% {
+    filter: drop-shadow(0 0 5px #fac71260);
+  }
+  51%, 53% {
+    filter: drop-shadow(0 0 7px #fac71280) 
+            drop-shadow(0 0 8px #fac71280);
+  }
+  54% {
+    filter: drop-shadow(0 0 5px #fac71260);
+  }
+  64%, 66% {
+    filter: drop-shadow(0 0 6px #fac71280) 
+            drop-shadow(0 0 7px #fac71280);
+  }
+  /* Этап 3: Возврат к подсветке */
+  68%, 100% {
+    filter: drop-shadow(0 0 5px #fac71260);
+  }
+`;
 
 const StyledThunderstormIcon = styled(IconWrapper).attrs({
     viewBox: '0 0 150 150',
-})`
+})<StyledThunderstormIconProps>`
     path:nth-child(1) {
         stroke-width: 4px;
     }
 
     path:nth-child(2) {
-        stroke-width: 5px;
+        stroke-width: 4px;
+        ${({ $isGlow }) =>
+            $isGlow &&
+            css`
+                filter: drop-shadow(0 0 5px #fac71260);
+                animation: ${thunderAnim} 5s infinite alternate;
+            `}
     }
 `;
 
-const ThunderstormIcon: React.FC<ThunderstormIconProps> = ({ size }) => {
+const ThunderstormIcon: React.FC<ThunderstormIconProps> = ({
+    size,
+    isGlow,
+}) => {
     return (
-        <StyledThunderstormIcon $size={size}>
+        <StyledThunderstormIcon $size={size} $isGlow={isGlow}>
             <path
                 d="M75 15.3398C85.8617 15.3398 95.3659 18.7895 103.596 25.71C111.852 32.6524 116.978 41.2401 119.035 51.5254L119.334 53.0195L120.854 53.1279C128.558 53.6783 134.971 56.7277 140.189 62.3125C145.407 67.8966 148 74.4879 148 82.1875C148 90.2434 145.14 97.1101 139.357 102.893C133.575 108.675 126.708 111.535 118.652 111.535H37.5C27.6792 111.535 19.3498 108.084 12.4004 101.135C5.45098 94.1854 2 85.8559 2 76.0352C2 66.7567 5.04419 58.8442 11.1426 52.1914C17.2619 45.5158 24.7231 41.7427 33.6055 40.8174L34.6963 40.7041L35.1875 39.7227C38.9279 32.2419 44.3367 26.3202 51.4424 21.9258C58.5385 17.5374 66.3757 15.3398 75 15.3398Z"
                 fill="url(#paint0_linear_5_145)"

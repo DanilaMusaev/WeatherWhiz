@@ -8,6 +8,8 @@ interface SunriseIconProps {
 const StyledSunriseIcon = styled(IconWrapper).attrs({ viewBox: '0 0 25 25' })`
     path {
         fill: ${({ theme }) => theme.textColor};
+
+        transition: fill 0.3s ease-out;
     }
 `;
 

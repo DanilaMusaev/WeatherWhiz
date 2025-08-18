@@ -13,11 +13,11 @@ const WeatherIndicatorIcon = ({ weather }: WeatherIndicatorIconProps) => {
         case 'Clear':
             return <SunIcon size={150} isGlow />;
         case 'Cloudy':
-            return <CloudyIcon size={150} />;
+            return <CloudyIcon size={150} isGlow/>;
         case 'Rainy':
             return <RainyIcon size={150} />;
         case 'Thunderstorm':
-            return <ThunderstormIcon size={150} />;
+            return <ThunderstormIcon size={150} isGlow/>;
     }
 };
 
