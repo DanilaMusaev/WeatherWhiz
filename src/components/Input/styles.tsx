@@ -1,5 +1,8 @@
 import styled from 'styled-components';
 import ScaleTabs from '../ScaleTabs';
+import CityAutocomplete from '../CityAutocomplete';
+import type { CityName, CityType } from '../../data/citiesList';
+import type { ChangeEvent, KeyboardEvent } from 'react';
 
 interface InputContainerProps {
     $width?: `${string}px` | `${string}vw` | `${string}%`;
@@ -27,7 +30,10 @@ interface InputProps {
         | `${string}px ${string}px ${string}px ${string}px`;
     placeholder?: string;
     value?: string;
-    onChange?: () => void;
+    onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
+    onSelect: (city: CityName) => void;
+    onKeyDownHandler?: (e: KeyboardEvent<HTMLInputElement>) => void;
+    suggestions?: CityType[];
 }
 
 const InputContainer = styled.div<InputContainerProps>`
@@ -38,7 +44,7 @@ const InputContainer = styled.div<InputContainerProps>`
     display: flex;
     column-gap: 30px;
     align-items: center;
-    overflow: hidden;
+    /* overflow: hidden; */
 
     &::before {
         content: '';
@@ -93,6 +99,9 @@ export const InputComponent: React.FC<InputProps> = ({
     placeholder,
     value,
     onChange,
+    onSelect,
+    onKeyDownHandler,
+    suggestions,
 }) => {
     return (
         <InputContainer
@@ -107,8 +116,10 @@ export const InputComponent: React.FC<InputProps> = ({
                 placeholder={placeholder}
                 value={value}
                 onChange={onChange}
+                onKeyDown={onKeyDownHandler}
             />
             <ScaleTabs />
+            <CityAutocomplete suggestions={suggestions} onSelect={onSelect}/>
         </InputContainer>
     );
 };

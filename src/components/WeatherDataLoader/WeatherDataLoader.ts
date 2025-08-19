@@ -1,5 +1,5 @@
 import { useQueries } from '@tanstack/react-query';
-import { useApi } from '../../providers/ApiProvider';
+import { UseApi } from '../../providers/ApiProvider';
 import { useWeatherStore } from '../../store/useWeatherStore';
 
 const WeatherDataLoader = () => {
@@ -11,7 +11,7 @@ const WeatherDataLoader = () => {
     const setForecastData = useWeatherStore((state) => state.setForecastData);
     const setError = useWeatherStore((state) => state.setError);
     const setLoading = useWeatherStore((state) => state.setLoading);
-    const apiService = useApi();
+    const apiService = UseApi();
 
     useQueries({
         queries: [
