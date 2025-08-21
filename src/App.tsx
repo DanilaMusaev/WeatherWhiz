@@ -9,6 +9,7 @@ import { getThemeByWeather } from './utils/getTheme';
 import { useWeatherStore } from './store/useWeatherStore';
 import { ApiProvider } from './providers/ApiProvider';
 import WeatherDataLoader from './components/WeatherDataLoader/WeatherDataLoader';
+import WeatherEffect from './components/WeatherEffect';
 
 const AppWrapper = styled.div`
     display: flex;
@@ -40,6 +41,7 @@ function App() {
                 <AppWrapper>
                     <MainBlock />
                     <FDFBlock />
+                    <WeatherEffect condition={condition} />
                 </AppWrapper>
             </ThemeProvider>
         </ApiProvider>
