@@ -8,7 +8,6 @@ const FDFBlock = () => {
     const daysForecast = useWeatherStore((state) => state.forecast);
     const nextFiveDays = getNext5Days();
 
-    console.log('Forecast: ', daysForecast);
     return (
         <GradFDFBlock
             $width="900px"

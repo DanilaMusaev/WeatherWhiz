@@ -1,5 +1,6 @@
 import type { Weather } from '../../store/types';
 import CloudFly from '../../styledComponents/CloudFly';
+import { Flashlight } from '../../styledComponents/Flashlight';
 import RainEffect from '../../styledComponents/RainEffect';
 
 interface WeatherEffectProps {
@@ -15,7 +16,13 @@ const WeatherEffect: React.FC<WeatherEffectProps> = ({ condition }) => {
         case 'Rainy':
             return <RainEffect />;
         case 'Thunderstorm':
-            return null;
+            return (
+                <>
+                    <RainEffect />
+                    <CloudFly iconVar="thunder" />
+                    <Flashlight />
+                </>
+            );
         default:
             return null;
     }

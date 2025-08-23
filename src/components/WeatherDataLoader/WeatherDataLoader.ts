@@ -33,8 +33,7 @@ const WeatherDataLoader = () => {
                     } finally {
                         setLoading(false);
                     }
-                },
-                staleTime: 5 * 60 * 1000, // 5 min
+                }
             },
             {
                 queryKey: ['forecast', city, unit],
@@ -51,8 +50,7 @@ const WeatherDataLoader = () => {
                         );
                         throw error;
                     }
-                },
-                staleTime: 5 * 60 * 1000, // 5 min
+                }
             },
         ],
     });

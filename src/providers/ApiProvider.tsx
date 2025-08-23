@@ -11,7 +11,7 @@ const ApiContext = createContext<ApiContextType | null>(null);
 
 export const ApiProvider = ({ children }: { children: React.ReactNode }) => {
     // Для корректной работы Fast Refresh
-    const apiService = useMemo(() => new ApiService(MockClient), []);
+    const apiService = useMemo(() => new ApiService(OpenWeatherMapClient), []);
     const value = useMemo(() => ({ apiService }), [apiService]);
 
     return <ApiContext.Provider value={value}>{children}</ApiContext.Provider>;

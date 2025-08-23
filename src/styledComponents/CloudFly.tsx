@@ -1,5 +1,6 @@
-import styled, { keyframes } from "styled-components";
-import CloudyIcon from "./icons/CloudyIcon";
+import styled, { keyframes } from 'styled-components';
+import CloudyIcon from './icons/CloudyIcon';
+import ThunderCloudyIcon from './icons/ThunderCloudyIcon';
 
 interface CloudProps {
     $top: number;
@@ -17,14 +18,15 @@ interface CloudFlyProps {
     minDuration?: number;
     maxDuration?: number;
     className?: string;
+    iconVar?: 'cloudy' | 'thunder';
 }
 
 const moveCloud = keyframes`
   0% {
-    transform: translateX(-100%);
+    transform: translateX(0);
   }
   100% {
-    transform: translateX(calc(100vw + 100%));
+    transform: translateX(calc(100vw + 250px));
   }
 `;
 
@@ -44,7 +46,7 @@ const CloudWrapper = styled.div<CloudProps>`
     top: ${(props) => props.$top}%;
     left: -200px;
     z-index: ${(props) => props.$zIndex};
-    
+
     width: ${(props) => props.$size}px;
     height: ${(props) => props.$size}px;
     opacity: ${(props) => props.$opacity};
@@ -52,8 +54,18 @@ const CloudWrapper = styled.div<CloudProps>`
     animation: ${moveCloud} ${(props) => props.$duration}s linear infinite;
     animation-delay: ${(props) => props.$delay}s;
     filter: blur(${(props) => Math.max(1, props.$size / 70)}px);
-    -webkit-mask-image: linear-gradient(to bottom, transparent 10%, #00000075 60%, transparent);
-    mask-image: linear-gradient(to bottom, transparent 10%, #00000075 60%, transparent);
+    -webkit-mask-image: linear-gradient(
+        to bottom,
+        transparent 10%,
+        #00000075 60%,
+        transparent
+    );
+    mask-image: linear-gradient(
+        to bottom,
+        transparent 10%,
+        #00000075 60%,
+        transparent
+    );
 
     &:nth-child(odd) {
         animation-direction: alternate;
@@ -71,8 +83,9 @@ const CloudFly: React.FC<CloudFlyProps> = ({
     minDuration = 12,
     maxDuration = 30,
     className,
+    iconVar,
 }) => {
-    const generateClouds = () => {
+    const generateClouds = (iconVar: 'cloudy' | 'thunder' = 'cloudy') => {
         const clouds = [];
 
         for (let i = 0; i < cloudCount; i++) {
@@ -84,7 +97,7 @@ const CloudFly: React.FC<CloudFlyProps> = ({
                 Math.random() * (maxDuration - minDuration) + minDuration
             );
             const delay = Math.random() * 10; // Задержка до 10 секунд
-            const opacity = 0.1 + Math.random() * 0.2; // 0.1-0.2
+            const opacity = 0.5 + Math.random() * 0.5; // 0.1-0.2
             const zIndex = Math.floor(Math.random() * 10); // 0-9
 
             clouds.push(
@@ -97,7 +110,11 @@ const CloudFly: React.FC<CloudFlyProps> = ({
                     $opacity={opacity}
                     $zIndex={zIndex}
                 >
-                    <CloudyIcon size={size} />
+                    {iconVar === 'cloudy' ? (
+                        <CloudyIcon size={size} />
+                    ) : (
+                        <ThunderCloudyIcon size={size} />
+                    )}
                 </CloudWrapper>
             );
         }
@@ -107,7 +124,7 @@ const CloudFly: React.FC<CloudFlyProps> = ({
 
     return (
         <CloudsContainer className={className}>
-            {generateClouds()}
+            {generateClouds(iconVar)}
         </CloudsContainer>
     );
 };

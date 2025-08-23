@@ -10,7 +10,6 @@ const MainBlock = () => {
     const current = useWeatherStore((state) => state.current);
     const isLoading = useWeatherStore((state) => state.isLoading);
 
-    console.log('Current weather', current);
     return (
         <GradMainBlock $width="900px" $padding="25px" $borderRadius="12px">
             <Input />
